@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="fetchStudents()">
+    <div class="container">
+        <form class="mt-4 mb-3" id="studentAddForm">
+            <div class="row">
+                <div class="form-group col">
+                    <label for="idNum">ID number</label>
+                    <input type="number" min="600000" max="999999" class="form-control" id="idNum"
+                        placeholder="Student ID e.g 675837" required>
+                </div>
+                <div class="form-group col">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" class="form-control" id="studentName" placeholder="Student Name" required>
+                </div>
+                <div class="form-group col">
+                    <label for="studentGrade">Student Grade</label>
+                    <input type="number" min="0" max="100" class="form-control" id="studentGrade"
+                        placeholder="Student Grade" required>
+                </div>
+            </div>
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+
+        </form>
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content" id="modalContent">
+                <span class="close">&times;</span>
+            </div>
+
+        </div>
+        <table id="content" class="table table-bordered table-sm table-striped"></table>
+        <p id="formError" class="text-danger"></p>
+    </div>
+
+    <div id="snackbar"></div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
