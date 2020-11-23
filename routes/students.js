@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 })
 
 router.get('/studentData', (req, res) => {
-    data.sort((a, b) => (a.name > b.name) ? 1 : -1 );
+    data.sort((a, b) => (a.studentName > b.studentName) ? 1 : -1 );
     res.send(data);
 });
 
@@ -38,6 +38,7 @@ router.post("/", (req, res)=>{
 router.delete("/delete", (req, res) =>{
     var newData = data.filter((item) => item.id != req.body.idNum);
     fs.writeFileSync(fileName, JSON.stringify(newData, null, 2));
+    newData.sort((a, b) => (a.studentName > b.studentName) ? 1 : -1 );
     res.send(newData);
 })
 
@@ -49,6 +50,7 @@ router.patch("/edit", (req, res)=> {
         }
     });
     fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
+    data.sort((a, b) => (a.studentName > b.studentName) ? 1 : -1 );
     res.send(data);
 })
 

@@ -1,3 +1,4 @@
+
 const server = 'http://localhost:3000';
 var studentId;
 var studentName;
@@ -43,19 +44,20 @@ async function addStudent() {
     if (response.error) {
         x.style.background = "red";
     }
-
+  
     x.className = "show";
     x.innerHTML = response.text;
-
-    // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
 function populateContent(students) {
     var table = document.getElementById('content');
-    table.innerHTML = "<thead class='thead-dark'><tr><th>Student ID</th><th>Full Name</th><th>Grade</th><th>Actions</th></tr></thead><tbody>";
-    students.forEach(student => {
+    table.innerHTML = "<thead class='thead-dark'><tr><th>#</th><th>Student ID</th><th>Full Name</th><th>Grade</th><th class='col-xs-2'>Actions</th></tr></thead><tbody>";
+    students.forEach((student, index) => {
         var row = document.createElement('tr');
+        var numberingId = document.createElement('td');
+        var numberId = document.createTextNode(index + 1);
+        numberingId.appendChild(numberId);
         var dataId = document.createElement('td');
         var textId = document.createTextNode(student.id);
         dataId.appendChild(textId);
@@ -63,23 +65,27 @@ function populateContent(students) {
         var textName = document.createTextNode(student.studentName);
         var dataName2 = document.createElement('td');
         var textName2 = document.createTextNode(student.grade + "%");
+        if(student.grade < 60){
+            row.className = "text-danger";
+        }
         dataName.appendChild(textName);
         dataName2.appendChild(textName2);
         var dataName3 = document.createElement('td');
         var deleteBtn = document.createElement("input");
         deleteBtn.type = "button";
         deleteBtn.name = "Delete";
-        deleteBtn.className = "btn btn-danger mr-2";
-        deleteBtn.setAttribute('value', 'Delete'); // or deleteBtn.value = "button";  
+        deleteBtn.className = "btn btn-sm btn-danger";
         deleteBtn.setAttribute('onClick', `deleteItem(${student.id})`);
+        deleteBtn.setAttribute('value', "Delete"); // or deleteBtn.value = "button";  
         var editBtn = document.createElement("input");
         editBtn.type = "button";
         editBtn.name = "Delete";
-        editBtn.className = "btn btn-secondary";
+        editBtn.className = "btn btn-sm btn-secondary mr-3";
         editBtn.setAttribute('value', 'Edit'); // or deleteBtn.value = "button";  
-        editBtn.setAttribute('onClick', `editItem(${student.id}, "${student.studentName}", ${student.grade})`);
-        dataName3.append(deleteBtn);
+        editBtn.setAttribute('onClick', `editItem(${student.id}, '${student.studentName}',${student.grade})`);
         dataName3.append(editBtn);
+        dataName3.append(deleteBtn);
+        row.appendChild(numberingId);
         row.appendChild(dataId);
         row.appendChild(dataName);
         row.appendChild(dataName2);
@@ -128,10 +134,13 @@ async function editItem (idNumber, studName, grade){
             </div>
             <div class="text-right">
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-secondary">Reset</button>
+                <button id="cancel" type="reset" class="btn btn-secondary">Cancel</button>
             </div>
         </form>
     `;
+    document.getElementById("cancel").addEventListener("click", () =>{
+        modal.style.display = "none"
+    })
     document.getElementById("studentEditForm").addEventListener("submit", (e) => {
         studentEditId = document.getElementById('idNum1').value;
         studentEditName = document.getElementById('studentName1').value;
@@ -150,7 +159,6 @@ async function editItem (idNumber, studName, grade){
     });
 }
 async function editStudent(){
-    
     const url = server + '/students/edit';
     const student = { id: studentEditId, studentName: studentEditName, grade: studentEditGrade };
     const options = {
