@@ -2,6 +2,7 @@
   font-family: 'Poppins', sans-serif;
 }
 .student-input-form{
+  background-color: white;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
   padding: 2em;
   border-radius: 1em;
@@ -91,10 +92,11 @@
   }
   
   .main-content{
-    background-color: #FBFCFC;
+    background-color:#F7F3EB;
   }
 
   .chart {
+    background-color: #FBFCFC;
     box-shadow: 0 0 15px 0 rgba(191, 191, 191, 1);
     border-radius: 10px;
     padding: 10px;
@@ -127,3 +129,4 @@
   .failing-students{
     background-color: rgba(231, 76, 60, 1);
   }
+

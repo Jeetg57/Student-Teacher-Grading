@@ -101,7 +101,7 @@ var ctx = document.getElementById('performanceChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['A and A minus', 'B and B minus', 'C and C minus', 'D and D minus', 'Fail',],
+        labels: ['A', 'B', 'C', 'D', 'Fail',],
         datasets: [{
             label: 'Grade Distribution',
             data: [marks.AandAMinus, marks.BandAMinus, marks.CandAMinus, marks.DandDMinus, marks.Fail],
@@ -153,6 +153,9 @@ var statisticsChart = new Chart(ctx2, {
         }]
     },
     options: {
+        legend: {
+            display: false,
+        },
         scales: {
             yAxes: [{
                 ticks: {
@@ -175,17 +178,22 @@ var rangeChart = new Chart(ctx4, {
             backgroundColor: [
                 'rgba(75, 192, 192, 0.4)',
                 'rgba(192, 57, 43, 0.4)',
+                'rgba(35, 155, 86, 0.4)',
 
             ],
             borderColor: [
                 'rgba(75, 192, 192, 1)',
-                'rgba(192, 57, 43, 1)'
+                'rgba(192, 57, 43, 1)',
+                'rgba(35, 155, 86, 1)',
 
             ],
             borderWidth: 1
         }]
     },
     options: {
+        legend: {
+            display: false,
+        },
         scales: {
             yAxes: [{
                 ticks: {
@@ -198,36 +206,14 @@ var rangeChart = new Chart(ctx4, {
 });
 var ctx3 = document.getElementById('modeChart').getContext('2d');
 var modeChart = new Chart(ctx3, {
-    type: 'horizontalBar',
+    type: 'bar',
     data: {
         labels: stats.mode,
         datasets: [{
-            label: 'Statistic',
+            label: 'Mode',
             data: stats.mode,
-            backgroundColor: [
-                'rgba(54, 162, 235, 0.5)',
-                'rgba(255, 206, 86, 0.5)',
-                'rgba(75, 192, 192, 0.5)',
-                'rgba(153, 102, 255, 0.5)',
-                'rgba(255, 99, 132, 0.5)',
-                'rgba(54, 162, 235, 0.5)',
-                'rgba(255, 206, 86, 0.5)',
-                'rgba(75, 192, 192, 0.5)',
-                'rgba(153, 102, 255, 0.5)',
-                'rgba(255, 99, 132, 0.5)'
-            ],
-            borderColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 99, 132, 1)'
-            ],
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
             borderWidth: 1
         }]
     },
@@ -286,12 +272,10 @@ function median(students) {
     });
     marks.sort();
     if (
-        numsLen % 2 === 0 // is even
+        numsLen % 2 === 0 
     ) {
-        // average of two middle numbers
         median = (marks[numsLen / 2 - 1] + marks[numsLen / 2]) / 2;
-    } else { // is odd
-        // middle number only
+    } else {  
         median = marks[(numsLen - 1) / 2];
     }
     console.log(median);

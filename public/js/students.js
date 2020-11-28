@@ -71,18 +71,22 @@ function populateContent(students) {
         dataName.appendChild(textName);
         dataName2.appendChild(textName2);
         var dataName3 = document.createElement('td');
-        var deleteBtn = document.createElement("input");
+        var deleteBtn = document.createElement("button");
         deleteBtn.type = "button";
         deleteBtn.name = "Delete";
         deleteBtn.className = "btn btn-sm btn-danger";
         deleteBtn.setAttribute('onClick', `deleteItem(${student.id})`);
-        deleteBtn.setAttribute('value', "Delete"); // or deleteBtn.value = "button";  
-        var editBtn = document.createElement("input");
+        var deleteBtnIcon = document.createElement("i");
+        deleteBtnIcon.className = "fas fa-trash-alt";
+        deleteBtn.append(deleteBtnIcon);
+        var editBtn = document.createElement("button");
         editBtn.type = "button";
-        editBtn.name = "Delete";
-        editBtn.className = "btn btn-sm btn-secondary mr-3";
-        editBtn.setAttribute('value', 'Edit'); // or deleteBtn.value = "button";  
-        editBtn.setAttribute('onClick', `editItem(${student.id}, '${student.studentName}',${student.grade})`);
+        editBtn.name = "Edit";
+        editBtn.className = "btn btn-sm btn-success mr-3";
+        editBtn.setAttribute('onClick', `editItem(${student.id}, '${student.studentName}' ,${student.grade})`);
+        var editBtnIcon = document.createElement("i");
+        editBtnIcon.className = "fas fa-edit";
+        editBtn.append(editBtnIcon);
         dataName3.append(editBtn);
         dataName3.append(deleteBtn);
         row.appendChild(numberingId);
@@ -111,7 +115,7 @@ async function deleteItem (idNumber)  {
     var students = await response.json()
     populateContent(students);
 }
-async function editItem (idNumber, studName, grade){
+async function editItem (idNumber, studNames, grade){
     modal.style.display = "block";
     modalContent.innerHTML = `
         <h1>Edit Student</h1>
@@ -119,12 +123,12 @@ async function editItem (idNumber, studName, grade){
         <div class="row">
                 <div class="form-group col">
                     <label for="idNum">ID number</label>
-                    <input type="number" min="600000" max="999999" class="form-control" id="idNum1"
+                    <input type="number" min="0" max="999999" class="form-control" id="idNum1"
                         placeholder="Student ID e.g 675837" required value=${idNumber} disabled>
                 </div>
                 <div class="form-group col">
                     <label for="studentName">Student Name</label>
-                    <input type="text" class="form-control" id="studentName1" placeholder="Student Name" value=${studName} required>
+                    <input type="text" class="form-control" id="studentName1" placeholder="Student Name" value='${studNames}' required>
                 </div>
                 <div class="form-group col">
                     <label for="studentGrade">Student Grade</label>

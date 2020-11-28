@@ -9,31 +9,45 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
 </head>
 
-<body onload="fetchStudents()">
+<body onload="fetchStudents()" class="main-content">
+    <nav class="navbar navbar-dark bg-dark justify-content-between">
+        <div class="container">
+            <a class="navbar-brand" href="/">Student Grading Application</a>
+            <div class="navbar-nav">
+                <div class="row">
+                <a class="nav-item nav-link mr-3" href="/">Home</a>
+                <a class="nav-item nav-link" href="/students">Add and Edit Students</a>
+                </div>
+            </div>
+        </div>
+    </nav>
     <div class="container mt-4">
-        <h1>Student Details</h1>
+        <h1>Student Input Form</h1>
         <form class="mt-4 mb-3 student-input-form" id="studentAddForm">
             <h4 class="pb-4 ">Input student details below and click submit</h4>
             <div class="row">
                 <div class="form-group col">
                     <label for="idNum">ID number</label>
-                    <input type="number" min="600000" max="999999" class="form-control" id="idNum"
+                    <input type="number" min="1" max="999999" class="form-control" id="idNum"
                         placeholder="Student ID e.g 675837" required>
                 </div>
                 <div class="form-group col">
                     <label for="studentName">Student Name</label>
-                    <input type="text" class="form-control" id="studentName" aria-label="Student Name" placeholder="Student Name" required>
+                    <input type="text" class="form-control" id="studentName" aria-label="Student Name"
+                        placeholder="Student Name" required>
                 </div>
                 <div class="form-group col">
                     <label for="studentGrade">Student Grade</label>
                     <div class="input-group">
-                    <input type="number" min="0" max="100" class="form-control" aria-label="Student Grade" id="studentGrade" aria-describedby="basic-addon2"
-                        placeholder="Student Grade" required>
-                    <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2">%</span>
-                    </div>
+                        <input type="number" min="0" max="100" class="form-control" aria-label="Student Grade"
+                            id="studentGrade" aria-describedby="basic-addon2" placeholder="Student Grade" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">%</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,13 +66,13 @@
 
         </div>
         <h2>List of all students with their grades</h2>
-        <p>If the row has a text color in red, it means that he/she has a failing grade</p>
-        <table id="content" class="table table-bordered table-sm table-striped"></table>
+        <p>If the row is colored in <span class="text-danger">red</span>, it means the student has a failing grade</p>
         <p id="formError" class="text-danger"></p>
+        <div class="table-responsive mb-5"> <table id="content" class="table table-bordered table-striped table-light"></table></div>
     </div>
 
     <div id="snackbar"></div>
-    <script src="js/main.js"></script>
+    <script src="js/students.js"></script>
 </body>
 
 </html>
