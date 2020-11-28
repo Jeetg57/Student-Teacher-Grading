@@ -56,7 +56,6 @@ function drawCharts(students){
 var modeStat = mode(students);
 var meanStat = mean(students);
 var medianStat = median(students);
-console.log(modeStat);
 var stats = {
     mean: meanStat,
     mode: modeStat,
@@ -278,6 +277,6 @@ function median(students) {
     } else {  
         median = marks[(numsLen - 1) / 2];
     }
-    console.log(median);
+
     return median;
 }

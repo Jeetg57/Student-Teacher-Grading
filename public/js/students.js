@@ -8,7 +8,6 @@ var studentEditName;
 var studentEditGrade;
 var modal = document.getElementById("myModal");
 var modalContent = document.getElementById("modalContent")
-var span = document.getElementsByClassName("close")[0];
 
  window.onclick = function(event) {
    if (event.target == modal) {
@@ -100,7 +99,6 @@ function populateContent(students) {
 }
 
 async function deleteItem (idNumber)  {
-    console.log(idNumber);
     const url = server + '/students/delete';
     const options = {
         method: 'DELETE',
@@ -174,6 +172,10 @@ async function editStudent(){
     }
     const response = await fetch(url, options).then(response => response.json());
     modal.style.display = "none";
+     var x = document.getElementById("snackbar");
+    x.className = "show";
+    x.innerHTML = response.text;
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
 }
 
 

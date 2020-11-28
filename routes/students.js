@@ -51,7 +51,7 @@ router.patch("/edit", (req, res)=> {
     });
     fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
     data.sort((a, b) => (a.studentName > b.studentName) ? 1 : -1 );
-    res.send(data);
+    res.json({text : "Successfully Changed"});
 })
 
 module.exports = router;
