@@ -70,14 +70,12 @@ function populateContent(students) {
         dataName.appendChild(textName);
         dataName2.appendChild(textName2);
         var dataName3 = document.createElement('td');
-        var deleteBtn = document.createElement("button");
+        var deleteBtn = document.createElement("input");
         deleteBtn.type = "button";
         deleteBtn.name = "Delete";
         deleteBtn.className = "btn btn-sm btn-danger";
+        deleteBtn.setAttribute('value', "Delete"); // or deleteBtn.value = "button";  
         deleteBtn.setAttribute('onClick', `deleteItem(${student.id})`);
-        var deleteBtnIcon = document.createElement("i");
-        deleteBtnIcon.className = "fas fa-trash-alt";
-        deleteBtn.append(deleteBtnIcon);
         var editBtn = document.createElement("button");
         editBtn.type = "button";
         editBtn.name = "Edit";
@@ -98,14 +96,16 @@ function populateContent(students) {
     table.innerHTML += "</tbody>"
 }
 
-async function deleteItem (idNumber)  {
+async function deleteItem(idNumber)  {
+    console.log(idNumber);
     const url = server + '/students/delete';
+    const student = { idNum: idNumber};
     const options = {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"idNum":idNumber}),
+        body: JSON.stringify(student),
     }
 
     // var x = document.getElementById("snackbar");

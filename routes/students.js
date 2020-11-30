@@ -39,7 +39,8 @@ router.delete("/delete", (req, res) =>{
     var newData = data.filter((item) => item.id != req.body.idNum);
     fs.writeFileSync(fileName, JSON.stringify(newData, null, 2));
     newData.sort((a, b) => (a.studentName > b.studentName) ? 1 : -1 );
-    res.send(newData);
+    data = newData;
+    res.send(data);
 })
 
 router.patch("/edit", (req, res)=> {
