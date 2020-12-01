@@ -1,32 +1,47 @@
 [
   {
-    "id": 20,
-    "studentName": "James Makau",
+    "id": 678901,
+    "studentName": "Jack Jamess",
+    "grade": 79
+  },
+  {
+    "id": 679820,
+    "studentName": "Jack Jeos",
+    "grade": 60
+  },
+  {
+    "id": 12345,
+    "studentName": "Jack Jones",
+    "grade": 83
+  },
+  {
+    "id": 45678,
+    "studentName": "Kamau Odando",
     "grade": 68
   },
   {
-    "id": 657056,
-    "studentName": "Jeet",
+    "id": 456789,
+    "studentName": "Kevin",
+    "grade": 70
+  },
+  {
+    "id": 123456,
+    "studentName": "Lewis",
+    "grade": 90
+  },
+  {
+    "id": 890283,
+    "studentName": "Maina Alex",
+    "grade": 40
+  },
+  {
+    "id": 392399,
+    "studentName": "Mark Alex",
     "grade": 82
   },
   {
-    "id": 653333,
-    "studentName": "Jeet Gohil",
+    "id": 678032,
+    "studentName": "Nathan",
     "grade": 72
-  },
-  {
-    "id": 737322,
-    "studentName": "Jill Chak",
-    "grade": 84
-  },
-  {
-    "id": 600019,
-    "studentName": "John Doe",
-    "grade": 39
-  },
-  {
-    "id": 657078,
-    "studentName": "Patricia",
-    "grade": 90
   }
 ]

@@ -43,7 +43,10 @@ async function addStudent() {
     if (response.error) {
         x.style.background = "red";
     }
-  
+    else {
+        x.style.background = "green";
+        document.getElementById('studentAddForm').reset();
+    }
     x.className = "show";
     x.innerHTML = response.text;
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
@@ -70,12 +73,15 @@ function populateContent(students) {
         dataName.appendChild(textName);
         dataName2.appendChild(textName2);
         var dataName3 = document.createElement('td');
-        var deleteBtn = document.createElement("input");
+        var deleteBtn = document.createElement("button");
         deleteBtn.type = "button";
         deleteBtn.name = "Delete";
         deleteBtn.className = "btn btn-sm btn-danger";
-        deleteBtn.setAttribute('value', "Delete"); // or deleteBtn.value = "button";  
+        // deleteBtn.setAttribute('value', "Delete"); // or deleteBtn.value = "button";  
         deleteBtn.setAttribute('onClick', `deleteItem(${student.id})`);
+        var deleteBtnIcon = document.createElement("i");
+        deleteBtnIcon.className = "fas fa-trash-alt";
+        deleteBtn.append(deleteBtnIcon);
         var editBtn = document.createElement("button");
         editBtn.type = "button";
         editBtn.name = "Edit";
@@ -110,7 +116,7 @@ async function deleteItem(idNumber)  {
 
     // var x = document.getElementById("snackbar");
     var response = await fetch(url, options);
-    var students = await response.json()
+    var students = await response.json();
     populateContent(students);
 }
 async function editItem (idNumber, studNames, grade){
@@ -196,6 +202,3 @@ document.getElementById('studentAddForm').addEventListener('submit', (e) => {
     }
     e.preventDefault();
 });
-
-
-
